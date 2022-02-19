@@ -2,9 +2,9 @@ import css from './MeetupItem.module.css';
 import Card from "../ui/Card";
 
 function MeetupItem(props) {
-    const {id, image, title, description, address} = props.meetup;
+    const {image, title, description, address} = props.meetup;
     return (
-        <li className={css.item} key={id}>
+        <li className={css.item} >
             <Card>
                 <div className={css.image}>
                     <img src={image} alt={title}/>

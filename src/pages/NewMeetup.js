@@ -1,9 +1,29 @@
 import NewMeetupForm from "../components/meetups/NewMeetupForm";
+import {useHistory} from "react-router-dom";
 
-function NewMeetupPage(){
+function NewMeetupPage() {
+    const history = useHistory();
+
+    function addMeetupHandler(meetupData) {
+        fetch(
+            'https://react-course-93438-default-rtdb.europe-west1.firebasedatabase.app/meetups.json',
+            {
+                method: 'POST',
+                body: JSON.stringify(meetupData),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }
+        ).then(() => {
+            history.replace('/');
+        });
+    }
+
+
     return <section>
         <h1>New Meetup Page</h1>
-        <NewMeetupForm/>
+        <NewMeetupForm onAddMeetup={addMeetupHandler}/>
     </section>;
 }
+
 export default NewMeetupPage;
